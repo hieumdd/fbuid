@@ -43,24 +43,17 @@ def main():
             for line in tqdm(f):
                 result = transform(json.loads(line))
                 results.append(result)
-                json.dump(result, f2)
                 i = i + 1
-                if i % 10000 == 0:
-                    print(i)
-                    '''
+                if i % 100000 == 0:
                     errors = client.load_table_from_json(
                         destination='Facebook.fbuid',
                         json_rows=results,
                         job_config=job_config
-                        # ignore_unknown_values=True
                     )
-                    '''
-                    print(i)
-                    #print(errors)
                     results = []
                     print(results)
-                if i == 10000:
-                    break
+                #if i == 10000:
+                #    break
 
 
 if __name__ == '__main__':
